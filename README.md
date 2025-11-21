@@ -64,6 +64,77 @@ DEEPSEEK_API_KEY=ваш_api_ключ_от_DeepSeek
 Описание: Любой введенный текст фильтруется и отправляется в DeepSeek.
 
 
+Установка FFmpeg и Tesseract OCR
+
+Для корректной работы голосовых сообщений и изображений нужно установить две внешние программы:
+
+1. FFmpeg — конвертирует аудиоформаты и готовит голосовые сообщения для распознавания.
+2. Tesseract OCR — извлекает текст из изображений.
+
+Без этих компонентов функции бота не будут работать.
+
+1. Установка FFmpeg
+
+FFmpeg нужен для:
+
+* конвертации голосовых сообщений Telegram из OGG в WAV,
+* нормализации аудио,
+* подготовки файлов для распознавания речи.
+
+1.1. Установка через Chocolatey
+
+1. Если Chocolatey не установлен, откройте PowerShell от имени администратора и выполните следующие команды:
+
+Set-ExecutionPolicy Bypass -Scope Process -Force;
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+2. Установите FFmpeg:
+
+choco install ffmpeg
+3. Проверьте установку:
+
+ffmpeg -version
+
+1.2. Ручная установка FFmpeg
+
+Если установить через Chocolatey не получается:
+
+1. Скачайте архив с сайта:
+
+https://www.gyan.dev/ffmpeg/builds/
+2. Распакуйте архив в папку:
+
+C:\ffmpeg\
+3. Добавьте путь к переменной окружения PATH:
+
+C:\ffmpeg\bin
+4. Проверьте установку:
+
+ffmpeg -version
+
+2. Установка Tesseract OCR
+
+Tesseract OCR извлекает текст из изображений, включая сканы документов.
+
+2.1. Установка на Windows
+
+1. Перейдите на официальный репозиторий Windows:
+
+https://github.com/UB-Mannheim/tesseract/wiki
+2. Скачайте установщик версии UB Mannheim.
+3. Установите программу, включив:
+* добавление Tesseract в системную переменную PATH,
+* установку английского и русского языковых пакетов.
+4. Проверьте установку:
+
+tesseract --version
+5. По умолчанию файл находится здесь:
+
+C:\Program Files\Tesseract-OCR\tesseract.exe
+
+Если путь не добавлен в PATH автоматически, добавьте его вручную.
+
+
 Для работы с голосовыми сообщениями используется FFmpeg для конвертации аудиоформатов (программа для конвертации аудио/видео файлов. Боту нужна для преобразования голосовых сообщений в текст), установка идёт через Chocolate (распаковка в C:\ffmpeg\, добавление по пути C:\ffmpeg\bin в PATH).
 #Используемые API
 Внешние сервисы API
